@@ -34,4 +34,3 @@ MongoClient.connect("mongodb://localhost:27017",(err,client)=>{
     client.close(); //close connection with database
 });
 
-readline();
