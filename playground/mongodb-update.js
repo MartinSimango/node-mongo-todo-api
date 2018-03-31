@@ -10,7 +10,8 @@ client.db("TodoApp").collection('Todos').findOneAndUpdate({_id: new ObjectID("5a
 ).then((result)=>{
     console.log(result);
 })
-client.db("TodoApp").collection('Users').findOneAndUpdate({name:'Martin'},{$set:{
+client.db("TodoApp").collection('Users').findOneAndUpdate({name:'Martin'},{
+$set:{
     name: 'Martin Shuko'
 },
 $inc:{
