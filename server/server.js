@@ -9,18 +9,21 @@ var {User}=require("./models/user");
 
 var app=express();
 
-app.use(bodyParser.json());
-app.post('/todos',(req,res)=>{ //handle a post request at the route /todos
-var todo= new Todo({
-    text: req.body.text
-}); 
-todo.save().then((doc)=>{
-res.send(doc); //
-},(err)=>{
-res.status(400).send(err);
+const port= process.env.PORT || 3000; //set up the port
 
+app.use(bodyParser.json()); //use the body parser to convert string to json
+
+app.post('/todos',(req,res)=>{ //handle a post request at the route /todos
+    var todo= new Todo({ //create
+        text: req.body.text
+    }); 
+    todo.save().then((doc)=>{
+        res.send(doc); //
+    },(err)=>{
+        res.status(400).send(err);
     });
 })
+
 app.get("/todos/:id",(req,res)=>{
     var id= req.params.id;
     if(!ObjectID.isValid(id)){
@@ -47,8 +50,8 @@ res.status(400).send(err);
 
 })
 
-app.listen(3000,()=>{
-    console.log("Server is running on port",3000);
+app.listen(port,()=>{
+    console.log("Server is running on port",port);
 });
 module.exports= {
     app
